@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+MY PROFILE <br>
+<a href="/dashboard">dashboard</a>
+<div style="margin-left: 30%;">
+    <img src="<%= result.imagesrc %>" alt="profilepicture" style="height: 100px;width:100px;overflow:hidden;border-radius: 50%; align-items: center;justify-items: center;">
+    <ul>
+        <li>Username:<%= result.username %></li>
+        <li>Phone no:<%= result.phone %></li>
+        <li>email:<%= result.email %></li>
+    </ul><br>
+    </div>
+
+
+
+<div>
+<h1>MAKE  POST</h1>
+<form action="/posts" method="POST" enctype="multipart/form-data">
+    <textarea name="postpara" id="" cols="60" rows="2">Caption</textarea><br>
+     <input type="file" name="postaudio"  value="upload audio"><br>
+     <button type="submit" class="btn btn-info">upload</button>
+     
+</form>
+</div>
+
+<div>
+    <h1>My posts</h1>
+    <ul>
+          
+            <% post.forEach(function(res){ %>
+                <img src="<%= result.imagesrc %>" alt="posted by" style="height: 50px;width:50px;overflow:hidden;border-radius: 50%;">
+                 <span>ABOUT::<%= res.postpara %></span> <br>
+                <% if(res.postaudio.substr((res.postaudio).length - 3)=='jpg' ||res.postaudio.substr((res.postaudio).length - 3)=='png' ||res.postaudio.substr((res.postaudio).length - 3)=='jpeg'){ %> <br>
+                    <img style="height: 100px;width: 200px;" src="<%=res.postaudio %>"></img> 
+                 <% } else if(res.postaudio.substr((res.postaudio).length - 3)=='mp4' ||res.postaudio.substr((res.postaudio).length - 3)=='mov' ||res.postaudio.substr((res.postaudio).length - 3)=='wmv'||res.postaudio.substr((res.postaudio).length - 3)=='MP4'){ %> <br>
+                    <video controls  style="height: 100px;width: 200px;" src="<%=res.postaudio %>"></video>
+                 <% } else if(res.postaudio.substr((res.postaudio).length - 3)=='mp3' ||res.postaudio.substr((res.postaudio).length - 3)=='wav'){ %> <br>
+                    <audio controls  style="height: 50px;width: 200px;" src="<%=res.postaudio %>"></audio><br>
+                 <% }else{ %>
+                   <h1>nothing</h1><br>
+                 <% } %> <br>
+                 <span>datetime:<%= res.date %></span><br>
+                 <h1>--------------------</h1>
+               
+                 <% }) %>
+                 
+                </ul>
+
+</div>
+
+
+
+</body>
+</html>
